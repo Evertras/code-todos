@@ -1,6 +1,6 @@
 .PHONY: default
 default:
-	go run cmd/code-todos/main.go find .
+	go run cmd/code-todos/main.go find internal cmd
 
 .PHONY: test
 test:

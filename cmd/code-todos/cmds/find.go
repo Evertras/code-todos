@@ -39,6 +39,7 @@ var findCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		// TODO: other outputs
 		fmt.Println(string(marshaled))
 	},
 }
