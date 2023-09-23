@@ -28,7 +28,7 @@ func findTodosInFile(filename string) ([]Todo, error) {
 			Filename:    filename,
 			PackageName: parsed.Name.Name,
 			Line:        fileset.Position(comment.Pos()).Line,
-			Text:        text,
+			Text:        strings.TrimRight(text, "\n"),
 		})
 	}
 
