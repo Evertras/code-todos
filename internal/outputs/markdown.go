@@ -9,7 +9,7 @@ import (
 
 var markdownTableTemplate = template.Must(template.New("markdownTable").Parse(`| Filename | Package | Line | Text |
 | -------- | ------- | ---- | ---- |
-{{ range . }}| [{{ .Filename }}](./{{ .Filename }}#{{ .Line }}) | {{ .PackageName }} | {{ .Line }} | {{ .Text }} |
+{{ range . }}| [{{ .Filename }}](./{{ .Filename }}#L{{ .Line }}) | {{ .PackageName }} | {{ .Line }} | {{ .Text }} |
 {{ end -}}`))
 
 func MarkdownTable(todos []todos.Todo) (string, error) {
