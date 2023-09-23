@@ -2,6 +2,13 @@
 
 Programmatically find and track TODO statements in codebases.
 
+## What it does
+
+Uses an AST to find all comments that contain `TODO:` and generate some useful
+data about where they are and what they say.  This can then be used either
+in further scripting with JSON output, or as a simple Markdown document that
+can be generated and updated in a repository.
+
 ## Installation
 
 Releases are available as raw binaries on the
@@ -31,6 +38,8 @@ may be out of date.
 ## Supported languages
 
 For now, just Go.  May add others later if useful.
+
+A general "catch-all" regex mode may also be helpful in the future.
 
 ## Usage
 
