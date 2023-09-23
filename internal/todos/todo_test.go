@@ -17,7 +17,7 @@ func TestFindTodosInFile(t *testing.T) {
 		Filename:    "testdata/go/main.go",
 		PackageName: "main",
 		Line:        4,
-		Text:        "TODO: Write a really cool thing here.\nAnd do it on multiple lines",
+		Text:        "TODO: Write a really cool thing here. And do it on multiple lines",
 	}
 
 	assert.Equal(t, expectedTodo, found[0])
