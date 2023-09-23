@@ -1,10 +1,10 @@
 package cmds
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 
+	"github.com/evertras/code-todos/internal/outputs"
 	"github.com/evertras/code-todos/internal/todos"
 	"github.com/spf13/cobra"
 )
@@ -32,14 +32,13 @@ var findCmd = &cobra.Command{
 			}
 		}
 
-		marshaled, err := json.MarshalIndent(todos, "", "  ")
+		output, err := outputs.Json(todos)
 
 		if err != nil {
-			fmt.Println("Failed to marshal todos:", err)
+			fmt.Printf("Error marshaling JSON: %s\n", err)
 			os.Exit(1)
 		}
 
-		// TODO: other outputs
-		fmt.Println(string(marshaled))
+		fmt.Println(output)
 	},
 }
