@@ -1,3 +1,3 @@
 .PHONY: default
 default:
-	go run cmd/code-todos/main.go
+	go run cmd/code-todos/main.go find .
