@@ -7,11 +7,12 @@ import (
 	"github.com/evertras/code-todos/internal/outputs"
 	"github.com/evertras/code-todos/internal/todos"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
-func init() {
-	rootCmd.AddCommand(findCmd)
-}
+const (
+	configKeyOutput = "output"
+)
 
 var findCmd = &cobra.Command{
 	Use:   "find",
@@ -34,7 +35,16 @@ var findCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		output, err := outputs.MarkdownTable(todos)
+		var output string
+		var err error
+
+		switch viper.GetString(configKeyOutput) {
+		case "markdown":
+			output, err = outputs.MarkdownTable(todos)
+
+		case "json":
+			output, err = outputs.Json(todos)
+		}
 
 		if err != nil {
 			fmt.Printf("Error generating output: %s\n", err)
@@ -43,4 +53,16 @@ var findCmd = &cobra.Command{
 
 		fmt.Println(output)
 	},
+}
+
+func init() {
+	findCmd.Flags().StringP(configKeyOutput, "o", "markdown", "Output format (markdown, json)")
+
+	err := viper.BindPFlags(findCmd.Flags())
+
+	if err != nil {
+		panic(err)
+	}
+
+	rootCmd.AddCommand(findCmd)
 }
