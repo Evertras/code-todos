@@ -1,23 +1,24 @@
-package todos
+package todos_test
 
 import (
 	"testing"
 
+	"github.com/evertras/code-todos/internal/todos"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestFindTodosInFile(t *testing.T) {
-	todos, err := findTodosInFile("testdata/go/main.go")
+	found, errs := todos.FindTodos("testdata/go/main.go")
 
-	assert.NoError(t, err)
-	assert.Len(t, todos, 1)
+	assert.Len(t, errs, 0)
+	assert.Len(t, found, 1)
 
-	expectedTodo := Todo{
+	expectedTodo := todos.Todo{
 		Filename:    "testdata/go/main.go",
 		PackageName: "main",
 		Line:        4,
 		Text:        "TODO: Write a really cool thing here.\nAnd do it on multiple lines",
 	}
 
-	assert.Equal(t, expectedTodo, todos[0])
+	assert.Equal(t, expectedTodo, found[0])
 }
