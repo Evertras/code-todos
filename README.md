@@ -2,6 +2,10 @@
 
 Programmatically find and track TODO statements in codebases.
 
+## Generated example
+
+See [./todos.md](./todos.md) for an example of a generated markdown table.
+
 ## Supported languages
 
 For now, just Go.  May add others later if useful.
