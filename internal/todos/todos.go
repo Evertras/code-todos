@@ -6,13 +6,6 @@ import (
 	"path/filepath"
 )
 
-type Todo struct {
-	Filename    string
-	PackageName string
-	Line        int
-	Text        string
-}
-
 func FindTodos(paths ...string) ([]Todo, map[string]error) {
 	errs := map[string]error{}
 	todos := make([]Todo, 0)

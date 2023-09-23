@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -31,8 +32,13 @@ var findCmd = &cobra.Command{
 			}
 		}
 
-		for _, todo := range todos {
-			fmt.Println(todo)
+		marshaled, err := json.MarshalIndent(todos, "", "  ")
+
+		if err != nil {
+			fmt.Println("Failed to marshal todos:", err)
+			os.Exit(1)
 		}
+
+		fmt.Println(string(marshaled))
 	},
 }

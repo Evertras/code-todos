@@ -20,7 +20,7 @@ func findTodosInFile(filename string) ([]Todo, error) {
 	for _, comment := range parsed.Comments {
 		text := comment.Text()
 
-		if !strings.Contains(text, "TODO") {
+		if !strings.Contains(text, "TODO:") {
 			continue
 		}
 
