@@ -1,3 +1,5 @@
+GO_FILES=$(shell find . -name '*.go' -not -path './vendor/*')
+
 .PHONY: default
 default: ./git/hooks/pre-commit todos.md
 
@@ -12,10 +14,10 @@ try:
 test:
 	go test ./internal/todos
 
-todos.md: $(shell find . -name '*.go')
+todos.md: $(GO_FILES)
 	go run cmd/code-todos/main.go find internal cmd > todos.md
 
-bin/code-todos: $(shell find . -name '*.go')
+bin/code-todos: $(GO_FILES)
 	@mkdir -p bin
 	go build -o bin/code-todos cmd/code-todos/main.go
 
