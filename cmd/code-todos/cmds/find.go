@@ -30,12 +30,14 @@ var findCmd = &cobra.Command{
 			for file, err := range errs {
 				fmt.Printf("%s: %s\n", file, err)
 			}
+
+			os.Exit(1)
 		}
 
-		output, err := outputs.Json(todos)
+		output, err := outputs.MarkdownTable(todos)
 
 		if err != nil {
-			fmt.Printf("Error marshaling JSON: %s\n", err)
+			fmt.Printf("Error generating output: %s\n", err)
 			os.Exit(1)
 		}
 
