@@ -28,7 +28,7 @@ var findCmd = &cobra.Command{
 
 		if len(errs) > 0 {
 			for file, err := range errs {
-				fmt.Printf("ERROR: %s: %s\n", file, err)
+				fmt.Fprintf(cmd.ErrOrStderr(), "ERROR: %s: %s\n", file, err)
 			}
 
 			os.Exit(1)
@@ -49,7 +49,7 @@ var findCmd = &cobra.Command{
 		}
 
 		if err != nil {
-			fmt.Printf("Error generating output: %s\n", err)
+			fmt.Fprintf(cmd.ErrOrStderr(), "Error generating output: %s\n", err)
 			os.Exit(1)
 		}
 
