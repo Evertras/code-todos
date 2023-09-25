@@ -31,12 +31,12 @@ func findTodosInPath(path string) ([]Todo, error) {
 	// We use filepath.WalkDir instead of parser.ParseDir because we want to
 	// better track file names and ignore files in gitignore, etc.
 	err := filepath.WalkDir(path, func(path string, d os.DirEntry, err error) error {
-		if d.IsDir() {
-			return nil
-		}
-
 		if err != nil {
 			return err
+		}
+
+		if d.IsDir() {
+			return nil
 		}
 
 		info, err := d.Info()
