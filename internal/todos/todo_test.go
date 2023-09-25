@@ -22,3 +22,10 @@ func TestFindTodosInFile(t *testing.T) {
 
 	assert.Equal(t, expectedTodo, found[0])
 }
+
+func TestFindTodosInMissingFile(t *testing.T) {
+	found, errs := todos.FindTodos("testdata/go/missing.go")
+
+	assert.Len(t, errs, 1)
+	assert.Len(t, found, 0)
+}

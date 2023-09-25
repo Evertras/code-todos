@@ -27,10 +27,8 @@ var findCmd = &cobra.Command{
 		todos, errs := todos.FindTodos(args...)
 
 		if len(errs) > 0 {
-			fmt.Println("ERRS")
-
 			for file, err := range errs {
-				fmt.Printf("%s: %s\n", file, err)
+				fmt.Printf("ERROR: %s: %s\n", file, err)
 			}
 
 			os.Exit(1)
