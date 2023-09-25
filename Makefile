@@ -12,7 +12,7 @@ try:
 
 .PHONY: test
 test:
-	go test ./internal/todos
+	go test ./internal/...
 
 todos.md: $(GO_FILES)
 	go run cmd/code-todos/main.go find internal cmd > todos.md

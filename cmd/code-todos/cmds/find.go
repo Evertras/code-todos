@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	configKeyOutput = "output"
+	configKeyOutput     = "output"
+	configKeyLinkPrefix = "link-prefix"
 )
 
 var findCmd = &cobra.Command{
@@ -40,7 +41,10 @@ var findCmd = &cobra.Command{
 
 		switch viper.GetString(configKeyOutput) {
 		case "markdown":
-			output, err = outputs.MarkdownTable(todos)
+			markdownConfig := outputs.MarkdownTableConfig{
+				LinkPrefix: viper.GetString(configKeyLinkPrefix),
+			}
+			output, err = outputs.MarkdownTable(todos, markdownConfig)
 
 		case "json":
 			output, err = outputs.Json(todos)
@@ -57,6 +61,7 @@ var findCmd = &cobra.Command{
 
 func init() {
 	findCmd.Flags().StringP(configKeyOutput, "o", "markdown", "Output format (markdown, json)")
+	findCmd.Flags().String(configKeyLinkPrefix, "", "Link prefix for markdown output (such as .. to go up a level)")
 
 	err := viper.BindPFlags(findCmd.Flags())
 
