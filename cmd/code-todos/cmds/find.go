@@ -61,7 +61,7 @@ var findCmd = &cobra.Command{
 
 func init() {
 	findCmd.Flags().StringP(configKeyOutput, "o", "markdown", "Output format (markdown, json)")
-	findCmd.Flags().String(configKeyLinkPrefix, "", "Link prefix for markdown output (such as ../ to go up a level)")
+	findCmd.Flags().String(configKeyLinkPrefix, "", "Link prefix for markdown output (such as .. to go up a level)")
 
 	err := viper.BindPFlags(findCmd.Flags())
 
