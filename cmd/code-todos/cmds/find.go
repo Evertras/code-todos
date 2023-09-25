@@ -53,7 +53,7 @@ var findCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		fmt.Println(output)
+		fmt.Fprintln(cmd.OutOrStdout(), output)
 	},
 }
 
