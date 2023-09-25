@@ -20,7 +20,7 @@ var findCmd = &cobra.Command{
 	Short: "Find TODOs in files and directories",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			fmt.Println("No files or directories specified")
+			fmt.Fprintln(cmd.ErrOrStderr(), "No files or directories specified")
 			os.Exit(1)
 		}
 
@@ -28,7 +28,7 @@ var findCmd = &cobra.Command{
 
 		if len(errs) > 0 {
 			for file, err := range errs {
-				fmt.Printf("ERROR: %s: %s\n", file, err)
+				fmt.Fprintf(cmd.ErrOrStderr(), "ERROR: %s: %s\n", file, err)
 			}
 
 			os.Exit(1)
@@ -49,7 +49,7 @@ var findCmd = &cobra.Command{
 		}
 
 		if err != nil {
-			fmt.Printf("Error generating output: %s\n", err)
+			fmt.Fprintf(cmd.ErrOrStderr(), "Error generating output: %s\n", err)
 			os.Exit(1)
 		}
 
