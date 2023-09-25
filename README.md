@@ -1,5 +1,7 @@
 # code-todos
 
+[![Coverage Status](https://coveralls.io/repos/github/Evertras/code-todos/badge.svg?branch=main)](https://coveralls.io/github/Evertras/code-todos?branch=main)
+
 Programmatically find and track TODO statements in codebases.
 
 ## What it does
