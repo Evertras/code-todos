@@ -36,7 +36,8 @@ jobs:
           echo -n "Last updated: " >> todos.md
           date >> todos.md
           echo "" >> todos.md
-          ../code-todos find ../repo/internal ../repo/cmd >> todos.md
+          cd ../repo
+          ../code-todos find internal cmd >> ../wiki/todos.md
       - name: Push to wiki
         run: |
           cd wiki
