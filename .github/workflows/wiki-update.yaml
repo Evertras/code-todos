@@ -36,7 +36,7 @@ jobs:
           echo -n "Last updated: " >> todos.md
           date >> todos.md
           echo "" >> todos.md
-          ../code-todos find internal cmd >> todos.md
+          ../code-todos find ../repo/internal ../repo/cmd >> todos.md
       - name: Commit changes
         run: |
           cd wiki
