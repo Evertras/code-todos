@@ -36,12 +36,13 @@ jobs:
           echo -n "Last updated: " >> todos.md
           date >> todos.md
           echo "" >> todos.md
-          ../code-todos find internal cmd >> todos.md
-      - name: Commit changes
+          cd ../repo
+          ../code-todos find --link-prefix "/Evertras/code-todos/blob/main" internal cmd >> ../wiki/todos.md
+      - name: Push to wiki
         run: |
           cd wiki
-          git add todos.md
-          # Quit gracefully if no actual updates are required
-          git commit -m "Update todos" || exit 0
-          git push
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update todos" && git push
 
