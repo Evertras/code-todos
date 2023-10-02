@@ -37,11 +37,11 @@ jobs:
           date >> todos.md
           echo "" >> todos.md
           ../code-todos find ../repo/internal ../repo/cmd >> todos.md
-      - name: Commit changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: wiki
-          repository: ${{github.repository}}.wiki
-          message: Update todos
+      - name: Push to wiki
+        run: |
+          cd wiki
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update todos" && git push
 
