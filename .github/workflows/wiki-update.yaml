@@ -45,7 +45,8 @@ jobs:
           git config user.name "github-actions"
 
           # Quit gracefully if no actual updates are required
+          cat todos.md
           git add todos.md
           git commit -m "Update todos" || exit 0
-          git push
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/Evertras/code-todos.wiki.git
 
