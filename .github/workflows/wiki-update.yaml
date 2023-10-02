@@ -38,15 +38,10 @@ jobs:
           echo "" >> todos.md
           ../code-todos find ../repo/internal ../repo/cmd >> todos.md
       - name: Commit changes
-        run: |
-          cd wiki
-
-          git config user.email "github-actions@users.noreply.github.com"
-          git config user.name "github-actions"
-
-          # Quit gracefully if no actual updates are required
-          cat todos.md
-          git add todos.md
-          git commit -m "Update todos" || exit 0
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/Evertras/code-todos.wiki.git
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: wiki
+          repository: ${{github.repository}}.wiki
+          message: Update todos
 
