@@ -48,9 +48,6 @@ A general "catch-all" regex mode may also be helpful in the future.
 By default, `code-todos` will output a Markdown table of all TODOs it finds.
 You can supply `-o json` to output JSON which can be used in further scripting.
 
-The general idea is to keep a file of current TODOs, particularly so that in
-a PR you can track added/completed TODOs in the codebase as a health metric.
-
 ```bash
 # Check help at any time to see available commands and options
 code-todos --help
@@ -68,3 +65,16 @@ code-todos find main.go pkg/thing/library.go -o json
 # Count TODOs, as an example of combining with jq
 code-todos find . -o json | jq length
 ```
+
+### Where to put todos
+
+The simplest idea is to keep a file of current TODOs, particularly so that in
+a PR you can track added/completed TODOs in the codebase as a health metric.
+This can be in [a todos file checked in with the repository](./todos.md) which
+[is built in a Makefile or similar](./Makefile).
+
+If PRs become too conflicting, you can also [update the wiki with a GitHub
+Action](./.github/workflows/wiki-update.yaml) and [see the result
+here](https://github.com/Evertras/code-todos/wiki/Todos).  This will detach
+the todo list from the main repository, which makes it less obvious in PRs when
+TODOs are updated, but it will make development across a team much easier.
