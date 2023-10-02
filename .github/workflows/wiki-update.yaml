@@ -37,7 +37,7 @@ jobs:
           date >> todos.md
           echo "" >> todos.md
           cd ../repo
-          ../code-todos find --link-prefix https://github.com/Evertras/code-todos/blob/main internal cmd >> ../wiki/todos.md
+          ../code-todos find --link-prefix "/Evertras/code-todos/blob/main" internal cmd >> ../wiki/todos.md
       - name: Push to wiki
         run: |
           cd wiki
